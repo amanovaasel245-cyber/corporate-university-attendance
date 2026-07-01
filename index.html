@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Явка сотрудников</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <aside class="summary-panel" aria-label="Сводка">
+          <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="6" y="8" width="36" height="32" rx="8"></rect>
+              <path d="M16 24h16M16 31h10M17 17l4 4 9-9"></path>
+            </svg>
+            <div>
+              <p>Корпоративный университет</p>
+              <h1>Явка сотрудников</h1>
+            </div>
+          </div>
+          <div class="date-card">
+            <label for="workDate">Дата учета</label>
+            <input id="workDate" type="date" />
+          </div>
+          <div class="stats-grid">
+            <div><span id="totalCount">0</span><p>Записей</p></div>
+            <div><span id="presentCount">0</span><p>На работе</p></div>
+            <div><span id="lateCount">0</span><p>Опоздали</p></div>
+            <div><span id="absentCount">0</span><p>Нет на месте</p></div>
+          </div>
+          <div class="panel-actions">
+            <button id="exportExcel" class="secondary-button" type="button"><span aria-hidden="true">↓</span> Скачать Excel</button>
+            <button id="clearDay" class="ghost-button" type="button">Очистить день</button>
+          </div>
+        </aside>
+        <section class="content-panel">
+          <form id="attendanceForm" class="entry-form">
+            <div class="form-grid">
+              <label>ФИО<input id="employeeName" type="text" placeholder="Например, Айгуль Садыкова" required /></label>
+              <label>Подразделение<input id="department" type="text" placeholder="Кафедра, отдел, центр" required /></label>
+              <label>Время прихода<input id="arrivalTime" type="time" required /></label>
+              <label>Статус<select id="status" required><option value="На работе">На работе</option><option value="Опоздал">Опоздал</option><option value="Командировка">Командировка</option><option value="Отпуск">Отпуск</option><option value="Больничный">Больничный</option><option value="Отсутствует">Отсутствует</option></select></label>
+              <label class="wide-field">Примечание<input id="note" type="text" placeholder="Кабинет, причина, комментарий" /></label>
+            </div>
+            <button class="primary-button" type="submit">Добавить в таблицу</button>
+          </form>
+          <div class="toolbar">
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Поиск по ФИО или подразделению" /></label>
+            <select id="statusFilter" aria-label="Фильтр по статусу"><option value="Все">Все статусы</option><option value="На работе">На работе</option><option value="Опоздал">Опоздал</option><option value="Командировка">Командировка</option><option value="Отпуск">Отпуск</option><option value="Больничный">Больничный</option><option value="Отсутствует">Отсутствует</option></select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ФИО</th><th>Подразделение</th><th>Приход</th><th>Статус</th><th>Примечание</th><th>Действие</th></tr></thead>
+              <tbody id="attendanceRows"></tbody>
+            </table>
+            <div id="emptyState" class="empty-state">
+              <svg viewBox="0 0 120 90" aria-hidden="true"><rect x="18" y="18" width="84" height="56" rx="12"></rect><path d="M34 35h52M34 48h34M34 61h45"></path><circle cx="88" cy="29" r="8"></circle></svg>
+              <p>Записей пока нет</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
